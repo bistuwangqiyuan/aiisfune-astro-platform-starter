@@ -116,4 +116,12 @@
         content: '';
         @apply mt-2 block h-1 w-16 rounded bg-accent-warm;
     }
+
+    .program-badge {
+        @apply rounded-full border border-accent-warm/50 bg-accent-warm/15 px-3 py-1 text-accent-warm;
+    }
+
+    .program-tag {
+        @apply inline-block rounded-md bg-primary/30 px-2 py-0.5 text-xs font-medium text-white;
+    }
 }

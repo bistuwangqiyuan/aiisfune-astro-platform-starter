@@ -4,6 +4,7 @@ import '@fontsource/noto-sans-sc/chinese-simplified-400.css';
 import '@fontsource/noto-sans-sc/chinese-simplified-700.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ProgramBanner from '../components/ProgramBanner.astro';
 import { site } from '../config/site';
 
 interface Props {
@@ -12,7 +13,13 @@ interface Props {
 }
 
 const { title, description = site.description } = Astro.props;
-const fullTitle = title === site.courseName ? `${site.name} · ${title}` : `${title} · ${site.courseName}`;
+const fullTitle =
+    title === site.courseName
+        ? `${site.programTagline} · ${site.name} · ${title}`
+        : `${title} · ${site.programTagline} · ${site.courseName}`;
+const metaDescription = description.includes(site.programTagline)
+    ? description
+    : `${site.programTagline} — ${description}`;
 ---
 
 <!doctype html>
@@ -20,11 +27,11 @@ const fullTitle = title === site.courseName ? `${site.name} · ${title}` : `${ti
     <head>
         <meta charset="UTF-8" />
         <title>{fullTitle}</title>
-        <meta name="description" content={description} />
+        <meta name="description" content={metaDescription} />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <meta property="og:title" content={fullTitle} />
-        <meta property="og:description" content={description} />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="zh_CN" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -32,6 +39,7 @@ const fullTitle = title === site.courseName ? `${site.name} · ${title}` : `${ti
     <body class="antialiased text-white bg-complementary">
         <div class="flex flex-col min-h-screen px-6 bg-bistu sm:px-12">
             <div class="flex flex-col w-full max-w-5xl mx-auto grow">
+                <ProgramBanner />
                 <Header />
                 <main class="grow"><slot /></main>
                 <Footer />

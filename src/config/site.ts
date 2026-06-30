@@ -4,12 +4,15 @@ export const site = {
     englishName: 'Beijing Information Science and Technology University',
     abbreviation: 'BISTU',
     courseName: '大学生人工智能通识课',
+    internshipProgram: '信工实习',
+    aiProgramming: 'AI编程',
+    programTagline: '信工实习 · AI编程',
     motto: '勤以为学，信以立身',
     url: 'https://www.bistu.edu.cn',
     address: '北京市海淀区清河小营东路12号',
     anniversary: '5月18日',
     description:
-        '北京信息科技大学大学生人工智能通识课官方网站，面向全体本科生培养 AI 素养与创新能力。',
+        '北京信息科技大学信工实习 · AI编程 · 大学生人工智能通识课官方网站，面向全体本科生培养 AI 素养与编程实践能力。',
     founded: 1937,
     merged: 2008,
     doctoralUnit: 2021

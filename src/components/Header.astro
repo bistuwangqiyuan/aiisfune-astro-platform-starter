@@ -1,14 +1,17 @@
 ---
 import Logo from './Logo.astro';
-import { navItems } from '../config/site';
+import { navItems, site } from '../config/site';
 
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-12 sm:pt-10 sm:pb-16">
-    <a href="/" class="no-underline">
-        <Logo />
-    </a>
+<nav class="flex flex-wrap items-center justify-between gap-4 pt-4 pb-12 sm:pt-6 sm:pb-16">
+    <div class="flex flex-col gap-2">
+        <a href="/" class="no-underline">
+            <Logo />
+        </a>
+        <p class="program-badge w-fit text-xs sm:hidden">{site.programTagline}</p>
+    </div>
     <ul class="flex flex-wrap gap-x-1 gap-y-1 sm:gap-x-2">
         {
             navItems.map((item) => {
