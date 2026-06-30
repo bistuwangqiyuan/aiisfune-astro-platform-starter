@@ -1,0 +1,24 @@
+---
+import { site } from '../config/site';
+---
+
+<section class="relative mb-16 overflow-hidden rounded-2xl border border-white/10">
+    <div class="absolute inset-0 bg-gradient-to-r from-complementary/95 via-primary/80 to-complementary/95"></div>
+    <img
+        src="/images/campus-hero.jpg"
+        alt="北京信息科技大学校园"
+        class="absolute inset-0 h-full w-full object-cover opacity-30"
+    />
+    <div class="relative px-8 py-16 sm:px-12 sm:py-24">
+        <p class="mb-2 text-sm font-medium text-accent-warm">{site.name}</p>
+        <h1 class="mb-4 max-w-2xl text-3xl font-bold leading-tight sm:text-5xl">{site.courseName}</h1>
+        <p class="mb-2 max-w-xl text-lg text-white/90">「{site.motto}」</p>
+        <p class="mb-8 max-w-xl text-white/70">
+            面向全体本科生，培养人工智能认知、批判思维与实践能力，让每位信息科学子具备面向未来的 AI 素养。
+        </p>
+        <div class="flex flex-wrap gap-4">
+            <a href="/course" class="btn btn-lg no-underline">了解课程</a>
+            <a href="/chapters" class="btn btn-lg btn-outline no-underline">开始学习</a>
+        </div>
+    </div>
+</section>

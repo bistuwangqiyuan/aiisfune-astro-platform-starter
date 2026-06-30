@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ChapterCard from '../../components/ChapterCard.astro';
+import MottoBanner from '../../components/MottoBanner.astro';
+import { site, chapters } from '../../config/site';
+---
+
+<Layout title="课程章节" description="北京信息科技大学 AI 通识课全部 7 个章节大纲。">
+    <h1 class="mb-4">课程章节</h1>
+    <p class="mb-10 max-w-2xl text-white/80">
+        本课程共 7 章，涵盖 AI 概论、机器学习、深度学习、NLP、计算机视觉、AI 伦理与实践。每章均结合{site.shortName}学科特色设计案例与思考题。
+    </p>
+
+    <div class="mb-12 grid gap-6 sm:grid-cols-2">
+        {chapters.map((chapter) => <ChapterCard chapter={chapter} />)}
+    </div>
+
+    <MottoBanner />
+</Layout>

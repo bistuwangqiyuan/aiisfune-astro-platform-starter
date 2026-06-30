@@ -1,16 +1,20 @@
 @import 'tailwindcss';
 
 @theme {
-    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
+    --font-sans: 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-primary: #005696;
+    --color-primary-content: #ffffff;
+    --color-accent-warm: #e8751a;
+    --color-complementary: #003d6b;
+    --color-surface: #004a7c;
+    --background-image-bistu: linear-gradient(
+            135deg,
+            color-mix(in oklab, var(--color-complementary) 95%, transparent) 0%,
+            color-mix(in oklab, var(--color-primary) 80%, transparent) 50%,
+            color-mix(in oklab, var(--color-complementary) 90%, transparent) 100%
         ),
-        url('/images/noise.png');
+        radial-gradient(ellipse at 20% 50%, color-mix(in oklab, var(--color-primary) 30%, transparent) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, color-mix(in oklab, var(--color-accent-warm) 15%, transparent) 0%, transparent 40%);
 }
 
 @layer base {
@@ -22,7 +26,11 @@
         @apply text-2xl font-bold sm:text-3xl;
     }
 
-    a:not(.btn) {
+    h3 {
+        @apply text-xl font-semibold;
+    }
+
+    a:not(.btn):not(.nav-link) {
         @apply underline transition hover:opacity-80;
     }
 
@@ -31,12 +39,16 @@
     }
 
     :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
+        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-accent-warm;
         font-size: 0.9em;
     }
 }
 
 @layer components {
+    .bg-bistu {
+        background-image: var(--background-image-bistu);
+    }
+
     .markdown {
         > * {
             @apply my-6;
@@ -53,13 +65,21 @@
         > :last-child {
             @apply mb-0;
         }
+
+        ul {
+            @apply list-disc pl-6 space-y-2;
+        }
+
+        ol {
+            @apply list-decimal pl-6 space-y-2;
+        }
     }
 
     .btn {
         @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
         padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
         font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
+        border-radius: var(--btn-border-radius, 0.375rem);
 
         &:hover {
             @apply bg-primary/85;
@@ -74,5 +94,26 @@
         --btn-font-size: 1.125rem;
         --btn-px: 1.5rem;
         --btn-py: 1.125rem;
+    }
+
+    .btn-outline {
+        @apply bg-transparent border-2 border-primary text-white no-underline;
+
+        &:hover {
+            @apply bg-primary/20;
+        }
+    }
+
+    .card {
+        @apply rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:border-primary/40 hover:bg-white/10;
+    }
+
+    .section-title {
+        @apply mb-8 text-2xl font-bold text-white sm:text-3xl;
+    }
+
+    .section-title::after {
+        content: '';
+        @apply mt-2 block h-1 w-16 rounded bg-accent-warm;
     }
 }

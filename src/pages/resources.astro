@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MottoBanner from '../components/MottoBanner.astro';
+import BistuInfoBar from '../components/BistuInfoBar.astro';
+import { site, resources } from '../config/site';
+---
+
+<Layout title="学习资源" description="AI 通识课推荐教材、MOOC、开源工具及北京信息科技大学相关链接。">
+    <h1 class="mb-4">学习资源</h1>
+    <p class="mb-10 max-w-2xl text-white/80">
+        以下资源供{site.shortName} AI 通识课学生拓展学习使用，包括经典教材、在线课程、开源工具及学校官方链接。
+    </p>
+
+    <div class="mb-12 grid gap-8 lg:grid-cols-3">
+        <div class="space-y-10 lg:col-span-2">
+            <section>
+                <h2 class="section-title">推荐教材</h2>
+                <div class="space-y-4">
+                    {
+                        resources.textbooks.map((book) => (
+                            <div class="card">
+                                <h3 class="font-bold text-white">{book.title}</h3>
+                                <p class="text-sm text-white/70">{book.author}</p>
+                                <p class="mt-1 text-xs text-accent-warm">{book.note}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">在线课程（MOOC）</h2>
+                <div class="space-y-4">
+                    {
+                        resources.moocs.map((mooc) => (
+                            <div class="card flex items-center justify-between gap-4">
+                                <div>
+                                    <h3 class="font-bold text-white">{mooc.title}</h3>
+                                    <p class="text-sm text-white/70">{mooc.platform}</p>
+                                </div>
+                                <a href={mooc.url} target="_blank" rel="noopener noreferrer" class="btn shrink-0 text-sm no-underline">
+                                    访问
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">开源工具</h2>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    {
+                        resources.tools.map((tool) => (
+                            <a
+                                href={tool.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="card block no-underline hover:border-primary"
+                            >
+                                <h3 class="font-bold text-accent-warm">{tool.name}</h3>
+                                <p class="text-sm text-white/70">{tool.description}</p>
+                            </a>
+                        ))
+                    }
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">信息科大相关链接</h2>
+                <ul class="card space-y-3">
+                    {
+                        resources.bistuLinks.map((link) => (
+                            <li>
+                                <a
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-accent-warm no-underline hover:opacity-80"
+                                >
+                                    {link.title} →
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </section>
+        </div>
+
+        <div>
+            <BistuInfoBar />
+        </div>
+    </div>
+
+    <MottoBanner />
+</Layout>

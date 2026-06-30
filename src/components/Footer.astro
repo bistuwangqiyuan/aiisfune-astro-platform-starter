@@ -1,9 +1,54 @@
 ---
+import { site, campuses } from '../config/site';
 
+const year = new Date().getFullYear();
 ---
 
-<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-    <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
-    </p>
+<footer class="mt-16 border-t border-white/10 pt-10 pb-12 sm:pt-16 sm:pb-20">
+    <div class="mb-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
+            <h3 class="mb-3 text-lg font-bold text-accent-warm">{site.name}</h3>
+            <p class="mb-2 text-sm text-white/80">{site.englishName}</p>
+            <p class="text-sm font-semibold text-white">「{site.motto}」</p>
+            <p class="mt-2 text-sm text-white/60">校庆日：{site.anniversary}</p>
+        </div>
+        <div>
+            <h3 class="mb-3 text-sm font-bold text-white/90">校区分布</h3>
+            <ul class="space-y-1.5 text-sm text-white/70">
+                {
+                    campuses.map((campus) => (
+                        <li>
+                            <span class="font-medium text-white/90">{campus.name}</span>
+                            <span class="block text-xs">{campus.address}</span>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+        <div>
+            <h3 class="mb-3 text-sm font-bold text-white/90">快速链接</h3>
+            <ul class="space-y-2 text-sm">
+                <li>
+                    <a href={site.url} target="_blank" rel="noopener noreferrer" class="text-accent-warm no-underline hover:opacity-80">
+                        访问学校官网 →
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vi.bistu.edu.cn/" target="_blank" rel="noopener noreferrer" class="text-white/70 no-underline hover:text-white">
+                        视觉形象识别系统
+                    </a>
+                </li>
+                <li>
+                    <a href="/course" class="text-white/70 no-underline hover:text-white">课程介绍</a>
+                </li>
+                <li>
+                    <a href="/chapters" class="text-white/70 no-underline hover:text-white">课程章节</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {year} {site.name} · {site.courseName}</p>
+        <p>地址：{site.address}</p>
+    </div>
 </footer>

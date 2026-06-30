@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MottoBanner from '../components/MottoBanner.astro';
+import BistuInfoBar from '../components/BistuInfoBar.astro';
+import { site, labs } from '../config/site';
+---
+
+<Layout title="实验实践" description="北京信息科技大学 AI 通识课实验实践模块——大模型对话、图像分类、Prompt 工程与 AI 伦理。">
+    <h1 class="mb-4">实验实践</h1>
+    <p class="mb-10 max-w-2xl text-white/80">
+        本模块包含 4 个实践项目，可在{site.shortName}沙河校区实验室或自行在线完成。实验强调动手体验，在{site.motto}的校训指引下诚信使用
+        AI 工具。
+    </p>
+
+    <div class="mb-12 grid gap-8 lg:grid-cols-3">
+        <div class="space-y-8 lg:col-span-2">
+            {
+                labs.map((lab, index) => (
+                    <article class="card">
+                        <div class="mb-4 flex items-center gap-3">
+                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-accent-warm text-sm font-bold text-white">
+                                {index + 1}
+                            </span>
+                            <h2 class="text-xl font-bold">{lab.title}</h2>
+                        </div>
+                        <p class="mb-4 text-white/70">{lab.description}</p>
+                        <h3 class="mb-2 text-sm font-semibold text-accent-warm">实验步骤</h3>
+                        <ol class="mb-4 list-decimal space-y-2 pl-5 text-sm text-white/80">
+                            {lab.steps.map((step) => (
+                                <li>{step}</li>
+                            ))}
+                        </ol>
+                        <h3 class="mb-2 text-sm font-semibold text-accent-warm">推荐工具</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {lab.tools.map((tool) => (
+                                <span class="rounded-full bg-primary/30 px-3 py-1 text-xs text-white/90">{tool}</span>
+                            ))}
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        <div>
+            <BistuInfoBar />
+            <div class="card mt-6">
+                <h3 class="mb-2 text-sm font-bold">实验环境</h3>
+                <p class="text-sm text-white/70">
+                    沙河校区高教园区拥有完善的计算机实验条件。学生也可使用 Google Colab 等云平台，在个人电脑完成全部实验。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <MottoBanner />
+</Layout>

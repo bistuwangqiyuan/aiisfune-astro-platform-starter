@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MottoBanner from '../components/MottoBanner.astro';
+import { site, campuses } from '../config/site';
+---
+
+<Layout title="关于学校" description="北京信息科技大学简介——历史沿革、校区分布、校训校标与 AI 通识课背景。">
+    <h1 class="mb-4">关于{site.shortName}</h1>
+    <p class="mb-10 max-w-2xl text-lg text-white/80">
+        {site.name}（{site.abbreviation}）是北京市重点支持建设的信息学科较为齐全的高校，校训「{site.motto}」。
+    </p>
+
+    <div class="mb-12 grid gap-8 lg:grid-cols-2">
+        <div class="card overflow-hidden p-0">
+            <img src="/images/campus-about.jpg" alt="北京信息科技大学校园风光" class="h-48 w-full object-cover sm:h-64" />
+            <div class="p-6">
+                <h2 class="mb-3 text-xl font-bold">学校简介</h2>
+                <p class="mb-4 text-sm text-white/80">
+                    学校办学历史可追溯至 {site.founded} 年，{site.merged} 年由原北京机械工业学院和原北京信息工程学院合并组建{site.name}。{site.doctoralUnit}
+                    年获批博士学位授予单位，现有教职工千余人，全日制在校生逾万人。
+                </p>
+                <p class="text-sm text-white/80">
+                    学校以信息学科为特色，涵盖工学、理学、管理学、经济学、文学、法学等多学科，服务首都高精尖产业与京津冀协同发展。
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="mb-4 text-xl font-bold">校训与校标</h2>
+            <p class="mb-4 text-2xl font-bold text-accent-warm">「{site.motto}」</p>
+            <p class="mb-4 text-sm text-white/80">
+                <strong>勤以为学</strong>——勤奋学习，追求真理；<strong>信以立身</strong>——诚信做人，以德立身。在 AI 时代，「信以立身」尤为重要，提醒我们在使用 AI 工具时坚守学术诚信。
+            </p>
+            <p class="text-sm text-white/70">
+                校标基本构图由「信息科大」汉语拼音声母组成，外圈线条代表宏观宇宙，中心图案代表微观世界，冷暖两色调象征活力创新与智慧科技，寓意探索宏观与微观世界的真理。
+            </p>
+            <p class="mt-4 text-sm text-white/60">校庆日：{site.anniversary}</p>
+        </div>
+    </div>
+
+    <section class="mb-12">
+        <h2 class="section-title">校区分布</h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {
+                campuses.map((campus) => (
+                    <div class="card">
+                        <h3 class="mb-2 font-bold text-accent-warm">{campus.name}</h3>
+                        <p class="text-sm text-white/70">{campus.address}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="card mb-12">
+        <h2 class="mb-4 text-xl font-bold">AI 通识课与学校发展</h2>
+        <p class="mb-4 text-white/80">
+            作为信息学科特色高校，{site.name}将 AI 通识教育纳入本科人才培养体系，让每位学生——无论来自哪个专业——都能具备面向未来的 AI 素养。本网站为「{site.courseName}」官方学习平台。
+        </p>
+        <a href={site.url} target="_blank" rel="noopener noreferrer" class="btn no-underline">
+            访问学校官网 →
+        </a>
+    </section>
+
+    <MottoBanner />
+</Layout>

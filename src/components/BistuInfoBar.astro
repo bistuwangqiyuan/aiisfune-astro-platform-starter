@@ -1,0 +1,24 @@
+---
+import { site } from '../config/site';
+
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<aside class:list={['card', className]}>
+    <h3 class="mb-3 text-sm font-bold text-accent-warm">{site.shortName}</h3>
+    <p class="mb-2 text-sm text-white/80">{site.name}</p>
+    <p class="mb-4 text-xs text-white/60">{site.abbreviation} · {site.englishName}</p>
+    <p class="mb-4 border-l-2 border-primary pl-3 text-sm font-medium text-white">「{site.motto}」</p>
+    <a
+        href={site.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn w-full text-sm no-underline"
+    >
+        访问官网
+    </a>
+</aside>

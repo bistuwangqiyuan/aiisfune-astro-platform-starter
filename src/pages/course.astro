@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MottoBanner from '../components/MottoBanner.astro';
+import BistuInfoBar from '../components/BistuInfoBar.astro';
+import { site, teachingSchedule } from '../config/site';
+---
+
+<Layout title="课程介绍" description="北京信息科技大学大学生人工智能通识课——课程目标、教学安排与考核方式。">
+    <h1 class="mb-4">课程介绍</h1>
+    <p class="mb-8 max-w-2xl text-lg text-white/80">
+        本课程是{site.name}面向全体本科生开设的人工智能通识教育课程，旨在帮助学生建立系统的 AI 认知框架，培养批判思维、伦理意识与实践能力。
+    </p>
+
+    <div class="mb-12 grid gap-8 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-10">
+            <section>
+                <h2 class="section-title">课程定位</h2>
+                <div class="card">
+                    <p class="text-white/80">
+                        在人工智能深刻改变社会生产与生活方式的背景下，信息科大作为信息学科特色鲜明的高校，有责任让每位本科生具备基本的
+                        AI 素养。本课程不追求培养 AI 专家，而是帮助来自不同专业的学生理解 AI 是什么、能做什么、有哪些风险，以及如何在各自领域善用
+                        AI 工具。
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">教学目标</h2>
+                <ul class="card space-y-3 text-white/80">
+                    <li>建立人工智能的基本概念认知，了解主要技术分支与发展趋势</li>
+                    <li>理解机器学习、深度学习、NLP、计算机视觉等核心技术原理</li>
+                    <li>掌握与大语言模型等 AI 工具协作的基本方法与 Prompt 技巧</li>
+                    <li>培养 AI 伦理意识，理解算法偏见、隐私保护等关键议题</li>
+                    <li>结合信息科大学科特色，探索 AI 在专业领域的应用可能</li>
+                    <li>制定个人 AI 学习路径，具备持续更新 AI 知识的能力</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="section-title">教学安排（16 周）</h2>
+                <div class="overflow-x-auto rounded-xl border border-white/10">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-primary/20">
+                                <th class="px-4 py-3 text-left font-semibold">周次</th>
+                                <th class="px-4 py-3 text-left font-semibold">主题</th>
+                                <th class="px-4 py-3 text-left font-semibold">章节</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                teachingSchedule.map((row) => (
+                                    <tr class="border-b border-white/5 hover:bg-white/5">
+                                        <td class="px-4 py-3 text-white/70">{row.week}</td>
+                                        <td class="px-4 py-3">{row.topic}</td>
+                                        <td class="px-4 py-3">
+                                            <a href={`/chapters/${row.chapter}`} class="text-accent-warm no-underline">
+                                                查看 →
+                                            </a>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">考核方式</h2>
+                <div class="grid gap-4 sm:grid-cols-3">
+                    <div class="card text-center">
+                        <p class="text-3xl font-bold text-accent-warm">30%</p>
+                        <p class="mt-1 font-semibold">平时成绩</p>
+                        <p class="mt-2 text-xs text-white/60">出勤、课堂讨论、在线测验</p>
+                    </div>
+                    <div class="card text-center">
+                        <p class="text-3xl font-bold text-accent-warm">30%</p>
+                        <p class="mt-1 font-semibold">实验实践</p>
+                        <p class="mt-2 text-xs text-white/60">4 次实验报告与 Prompt 练习</p>
+                    </div>
+                    <div class="card text-center">
+                        <p class="text-3xl font-bold text-accent-warm">40%</p>
+                        <p class="mt-1 font-semibold">期末考核</p>
+                        <p class="mt-2 text-xs text-white/60">开卷考试 + AI 实践项目展示</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div>
+            <BistuInfoBar />
+        </div>
+    </div>
+
+    <MottoBanner />
+</Layout>

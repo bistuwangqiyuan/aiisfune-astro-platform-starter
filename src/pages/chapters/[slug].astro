@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BistuInfoBar from '../../components/BistuInfoBar.astro';
+import MottoBanner from '../../components/MottoBanner.astro';
+import { chapters, getChapterBySlug } from '../../config/site';
+
+export function getStaticPaths() {
+    return chapters.map((chapter) => ({
+        params: { slug: chapter.slug }
+    }));
+}
+
+const { slug } = Astro.params;
+const chapter = getChapterBySlug(slug!);
+
+if (!chapter) {
+    return Astro.redirect('/chapters');
+}
+
+const prev = chapters.find((c) => c.number === chapter.number - 1);
+const next = chapters.find((c) => c.number === chapter.number + 1);
+---
+
+<Layout title={`第${chapter.number}章 ${chapter.title}`} description={chapter.description}>
+    <nav class="mb-6 text-sm text-white/60">
+        <a href="/chapters" class="text-accent-warm no-underline">课程章节</a>
+        <span> / </span>
+        <span>第 {chapter.number} 章</span>
+    </nav>
+
+    <div class="mb-8 grid gap-8 lg:grid-cols-3">
+        <div class="lg:col-span-2">
+            <span class="mb-2 inline-block rounded-full bg-primary px-3 py-1 text-sm font-medium">第 {chapter.number} 章</span>
+            <h1 class="mb-4">{chapter.title}</h1>
+            <p class="mb-8 text-lg text-white/80">{chapter.description}</p>
+
+            <section class="mb-10">
+                <h2 class="section-title">学习目标</h2>
+                <ul class="card space-y-2 text-white/80">
+                    {chapter.objectives.map((obj) => <li>{obj}</li>)}
+                </ul>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="section-title">核心知识</h2>
+                <ul class="card space-y-2 text-white/80">
+                    {chapter.keyPoints.map((point) => <li>{point}</li>)}
+                </ul>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="section-title">信息科大案例</h2>
+                <div class="card border-l-4 border-accent-warm">
+                    <p class="text-white/80">{chapter.caseStudy}</p>
+                </div>
+            </section>
+
+            <section class="mb-10">
+                <h2 class="section-title">思考题</h2>
+                <ol class="card space-y-3 text-white/80">
+                    {chapter.questions.map((q) => <li>{q}</li>)}
+                </ol>
+            </section>
+
+            <div class="flex flex-wrap gap-4 border-t border-white/10 pt-8">
+                {
+                    prev ? (
+                        <a href={`/chapters/${prev.slug}`} class="btn btn-outline no-underline">
+                            ← 上一章：{prev.title}
+                        </a>
+                    ) : null
+                }
+                {
+                    next ? (
+                        <a href={`/chapters/${next.slug}`} class="btn no-underline">
+                            下一章：{next.title} →
+                        </a>
+                    ) : (
+                        <a href="/labs" class="btn no-underline">
+                            进入实验实践 →
+                        </a>
+                    )
+                }
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <BistuInfoBar />
+            <div class="card">
+                <h3 class="mb-3 text-sm font-bold text-white/90">本章关联</h3>
+                <p class="text-sm text-white/70">{chapter.bistuContext}</p>
+            </div>
+        </div>
+    </div>
+
+    <MottoBanner />
+</Layout>
